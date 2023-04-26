@@ -1,4 +1,3 @@
-import 'package:chat_app/cach_helper/shared_pref.dart';
 import 'package:chat_app/layout/layout_screen.dart';
 import 'package:chat_app/screens/all_chats/all_chat_screen.dart';
 import 'package:chat_app/screens/login/login_cubit/login_cubit.dart';
@@ -9,6 +8,7 @@ import 'package:chat_app/screens/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'component/cach_helper/shared_pref.dart';
 import 'component/constant.dart';
 import 'firebase_options.dart';
 import 'layout/chat_cubit/chat_cubit.dart';

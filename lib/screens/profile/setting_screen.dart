@@ -1,4 +1,4 @@
-import 'package:chat_app/component/helper/show_toast.dart';
+import 'package:chat_app/component/widgets/show_toast.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

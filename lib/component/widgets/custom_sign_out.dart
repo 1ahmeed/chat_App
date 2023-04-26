@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../cach_helper/shared_pref.dart';
 import '../../screens/login/login_screen.dart';
+import '../cach_helper/shared_pref.dart';
 
 void signOut(context) {
   CacheHelper.removeData(key: 'uId').then((value){
