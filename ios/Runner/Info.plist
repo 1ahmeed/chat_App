@@ -2,6 +2,37 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <!-- Google Sign-in Section -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <!-- TODO Replace this value: -->
+                <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+                <string>com.googleusercontent.apps.930656244719-2hbqiu72ketan4i7r5b72nb63fkelesa</string>
+            </array>
+        </dict>
+    </array>
+
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb5bec4f271da4db00fa560a7e7b042cc6</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>658447713161429</string>
+    <key>FacebookClientToken</key>
+    <string>CLIENT-TOKEN</string>
+    <key>FacebookDisplayName</key>
+    <string>Chat App</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

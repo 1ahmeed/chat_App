@@ -49,6 +49,10 @@ dependencies:
   firebase_storage: ^11.1.0
   fluttertoast: ^8.2.1
   easy_splash_screen: ^1.0.4
+  google_sign_in:
+  firebase_messaging: ^14.7.9
+  http:
+  flutter_facebook_auth: ^6.0.3
 
 dev_dependencies:
   flutter_test:

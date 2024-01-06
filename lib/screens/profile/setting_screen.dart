@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
         if (model != null) {
           nameController.text = model.name!;
           emailController.text = model.email!;
-          phoneController.text = model.phone!;
+          phoneController.text = model.phone??"";
         }
 
         return ConditionalBuilder(

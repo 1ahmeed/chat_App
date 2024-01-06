@@ -1,7 +1,9 @@
 import 'package:chat_app/layout/chat_cubit/chat_cubit.dart';
 import 'package:chat_app/layout/chat_cubit/chat_state.dart';
+import 'package:chat_app/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../component/constant.dart';
 
@@ -23,6 +25,15 @@ class LayoutScreen extends StatelessWidget {
             backgroundColor: kPrimaryColor,
             title: Text(ChatCubit.get(context)!
                 .titles[ChatCubit.get(context)!.currentIndex]),
+            actions: [
+              IconButton(onPressed: (){
+                GoogleSignIn googleSignIn=GoogleSignIn();
+                googleSignIn.disconnect();
+                Navigator.of(context).pushNamedAndRemoveUntil(LoginScreen.id, (route) => false);
+
+              },
+                  icon: const Icon(Icons.exit_to_app))
+            ],
 
           ),
           bottomNavigationBar: BottomNavigationBar(

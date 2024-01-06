@@ -1,6 +1,9 @@
+import 'package:chat_app/screens/all_chats/all_chat_screen.dart';
 import 'package:chat_app/screens/register/register_cubit/register_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../component/cach_helper/shared_pref.dart';
 import '../../component/constant.dart';
@@ -11,16 +14,26 @@ import '../../layout/chat_cubit/chat_cubit.dart';
 import '../../layout/layout_screen.dart';
 
 // ignore: must_be_immutable
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   static String id = 'RegisterScreen';
-  String? email;
-  String? password;
-  String? name;
-  String? phone;
-  GlobalKey<FormState> formKey = GlobalKey();
-  bool isLoading = false;
-
   RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  String? email;
+
+  String? password;
+
+  String? name;
+
+  String? phone;
+
+  GlobalKey<FormState> formKey = GlobalKey();
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +41,8 @@ class RegisterScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is RegisterLoadingState) {
           isLoading = true;
-        } else if (state is SocialCreateUserSuccessStates) {
+        }
+        else if (state is SocialCreateUserSuccessStates) {
           isLoading = false;
           CacheHelper.saveData(key: "uId", value: state.uId);
             uId=state.uId;
@@ -41,11 +55,16 @@ class RegisterScreen extends StatelessWidget {
             context,
             'Register Successfully',
           );
-        } else if (state is RegisterErrorState) {
+        }
+        else if (state is RegisterErrorState) {
           isLoading = false;
           showSnackBar(context, state.error);
         }
-      },
+        else if(state is RegisterWithGoogleSuccessState){
+          Navigator.pushNamed(context, LayoutScreen.id);
+
+        }
+        },
       builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: isLoading,
@@ -73,8 +92,8 @@ class RegisterScreen extends StatelessWidget {
                         const SizedBox(
                           height: 70,
                         ),
-                        Row(
-                          children: const [
+                        const Row(
+                          children: [
                             Text(
                               'Register',
                               style:
@@ -153,6 +172,29 @@ class RegisterScreen extends StatelessWidget {
                             }
                           },
                           textButton: 'Register',
+                          colorOfContainer: Colors.white,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+
+                        CustomButton(
+                          onTap: () {
+                          RegisterCubit.get(context)!.signInWithGoogle();
+
+                          },
+                          textButton: 'Register with GooGle',
+                          colorOfContainer: Colors.white,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        CustomButton(
+                          onTap: () {
+                            RegisterCubit.get(context)!.signInWithFacebook();
+
+                          },
+                          textButton: 'Register with facebook',
                           colorOfContainer: Colors.white,
                         ),
                         const SizedBox(

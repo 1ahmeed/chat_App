@@ -1,5 +1,7 @@
 import 'package:chat_app/layout/layout_screen.dart';
+import 'package:chat_app/screens/all_chats/all_chat_screen.dart';
 import 'package:chat_app/screens/register/register_screen.dart';
+import 'package:chat_app/test_notificaions/notify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -32,9 +34,10 @@ class LoginScreen extends StatelessWidget {
           isLoading = false;
           CacheHelper.saveData(key: 'uId', value: state.uId).then((value){
             uId=CacheHelper.getData(key: "uId");
-            // ChatCubit.get(context)?.getUsers();
             ChatCubit.get(context)?.getUserData();
-            Navigator.pushNamed(context, LayoutScreen.id,arguments: state.uId);
+             Navigator.pushNamed(context, LayoutScreen.id,arguments: state.uId);
+            // Navigator.pushNamedAndRemoveUntil(context, NotifyScreen.id, (route) => false);
+          //
           });
           showSnackBar(context, 'Login Successfully',);
         } else if (state is LoginErrorState) {
