@@ -16,18 +16,19 @@ import 'component/cach_helper/shared_pref.dart';
 import 'component/constant.dart';
 import 'firebase_options.dart';
 import 'layout/chat_cubit/chat_cubit.dart';
+import 'otp/phone_screen.dart';
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-print("-------------------------------------");
-print('Message data: ${message.data}');
-  print(message.notification!.title);
-  print(message.notification!.body);
-print("-------------------------------------");
-
-  // print("Handling a background message: ${message.messageId}");
-}
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   // If you're going to use other Firebase services in the background, such as Firestore,
+//   // make sure you call `initializeApp` before using other Firebase services.
+// print("-------------------------------------");
+// print('Message data: ${message.data}');
+//   print(message.notification!.title);
+//   print(message.notification!.body);
+// print("-------------------------------------");
+//
+//   // print("Handling a background message: ${message.messageId}");
+// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,20 +37,20 @@ void main() async {
   );
   String? token =await FirebaseMessaging.instance.getToken();
   print(token);
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    // print('Got a message whilst in the foreground!');
-
-    if (message.notification != null) {
-      print('=================================================');
-       print('Message data: ${message.data}');
-      print(message.notification!.title);
-      print(message.notification!.body);
-      // print('Message also contained a notification: ${message.notification}');
-      print('=================================================');
-
-
-    }
-  });
+  // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+  //   // print('Got a message whilst in the foreground!');
+  //
+  //   if (message.notification != null) {
+  //     print('=================================================');
+  //      print('Message data: ${message.data}');
+  //     print(message.notification!.title);
+  //     print(message.notification!.body);
+  //     // print('Message also contained a notification: ${message.notification}');
+  //     print('=================================================');
+  //
+  //
+  //   }
+  // });
   // FirebaseMessaging.onMessageOpenedApp.listen((event) {
   //   print("************************************");
   //   print('on message opened app');
@@ -57,7 +58,7 @@ void main() async {
   //   print("************************************");
   // });
   ///لما التطبيق يكون background
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   await CacheHelper.init();
 
@@ -107,6 +108,7 @@ class MyApp extends StatelessWidget {
           NotifyScreen.id: (context) => const NotifyScreen(),
         },
         initialRoute: startWidget,
+        // home: Phone(),
       ),
     );
   }

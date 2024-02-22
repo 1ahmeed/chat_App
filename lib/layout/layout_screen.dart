@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../component/constant.dart';
+import '../component/widgets/custom_sign_out.dart';
 
 class LayoutScreen extends StatelessWidget {
   static String id = "LayoutScreen";
@@ -32,7 +33,15 @@ class LayoutScreen extends StatelessWidget {
                 Navigator.of(context).pushNamedAndRemoveUntil(LoginScreen.id, (route) => false);
 
               },
-                  icon: const Icon(Icons.exit_to_app))
+                  icon: const Icon(Icons.exit_to_app)),
+              TextButton(
+                  onPressed: () {
+                    signOut(context);
+                  },
+                  child: const Text(
+                    'Log out',
+                    style: TextStyle(color: Colors.grey),
+                  ))
             ],
 
           ),
